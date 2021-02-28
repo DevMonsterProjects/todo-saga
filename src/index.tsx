@@ -2,23 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
-import createSagaMiddleware from "redux-saga";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import App from "./App/App";
 import reducers from "reducers";
-import { todoSaga } from "sagas/todoSaga";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const sagaMiddleware = createSagaMiddleware();
-
-const store = createStore(
-	reducers,
-	composeWithDevTools(applyMiddleware(sagaMiddleware))
-);
-
-sagaMiddleware.run(todoSaga);
+const store = createStore(reducers, composeWithDevTools(applyMiddleware()));
 
 ReactDOM.render(
 	<React.StrictMode>
